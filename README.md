@@ -3,17 +3,7 @@
 Навчальний сервер на **Node.js + Express.js** з даними у **MongoDB Atlas** (Mongoose), авторизацією через **Passport**
 та шаблонізаторами **PUG / EJS**. Проєкт побудований за патерном **MVC**.
 
-## Що нового (HW 67.1)
-
-| Тема                    | Що додано                                                                                          |
-| ----------------------- | -------------------------------------------------------------------------------------------------- |
-| **Курсори**             | Потокове вивантаження статей (`/api/articles/export`) і підрахунок статистики обходом курсора (`/api/stats/scan`) — без збереження всіх документів у масиві |
-| **Агрегаційні запити**  | Чотири конвеєри `aggregate()` для статистики: `overview`, `authors`, `tags`, `timeline`            |
-| **Робота з великими даними** | Генератор 50–100 тисяч статей, скрипт `benchmark`, вимірювання пам'яті сервера в `/health`    |
-
-Попередній функціонал (CRUD-операції `insertOne … deleteMany`, `find` з проєкцією) описано в
-[`docs/HW66-crud-api.md`](docs/HW66-crud-api.md) і працює без змін.
-
+#
 ### Нові маршрути (усі потребують сесії)
 
 | Маршрут                          | Техніка                         | Що робить                                                                | Реалізація (файл → функція)                                   |
@@ -37,7 +27,6 @@
 npm install
 ```
 
-Створіть файл **`.env`** (за зразком `.env.example`; він у `.gitignore`):
 
 ```env
 MONGODB_URI=mongodb+srv://myUser:myPassword@cluster0.xxxxx.mongodb.net/express_app?retryWrites=true&w=majority
@@ -697,15 +686,4 @@ express-cursors-app/
 | Atlas M0: `you are over your space quota`                | Ліміт 512 МБ: `npm run seed:clear` або менша кількість статей                                          |
 | У PowerShell `curl` повертає дивні помилки               | Використовуйте `curl.exe` та екрануйте лапки в JSON як `\"`                                            |
 
-## Публікація в Git
 
-```bash
-git init
-git add .
-git commit -m "Add cursors (streaming export, scan) and aggregation stats"
-git branch -M main
-git remote add origin <URL-вашого-репозиторію>
-git push -u origin main
-```
-
-Перед `git add .` переконайтеся, що `.env` не потрапляє в індекс (`git status`).
